@@ -159,10 +159,9 @@ function Window({ id, appId, onClose, onFocus, offsetX, offsetY, zIndex, onDrag 
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 style={{
-                    height: isFullscreen ? 'calc(100% - 50px)' : 'auto',  // 헤더 제외한 창 높이
-                    maxHeight: isFullscreen ? 'none' : '550px', // ✅ 일반 창일 때는 제한
+                    height: isFullscreen ? 'calc(100% - 20px)' : 'auto',
+                    maxHeight: isFullscreen ? 'none' : '550px', // 일반 창일 때는 제한
                     overflow: 'auto',
-                    padding: isFullscreen ? '1.5rem' : undefined,
                 }}
             >
                 {content[appId]}

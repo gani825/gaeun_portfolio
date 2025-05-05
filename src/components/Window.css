@@ -16,10 +16,10 @@
 /* 전체화면 모드 */
 .window.fullscreen {
     position: fixed;
-    top: 50px; /* 메뉴바 높이 */
+    /*top: 50px; !* 메뉴바 높이 *!*/
     left: 0;
     width: 100vw;
-    height: calc(100vh - 50px);
+    /*height: 100%;*/
     border-radius: 8px;
 }
 
@@ -100,6 +100,6 @@
 }
 
 .window.fullscreen .window-content {
-    height: calc(100% - 58px); /* 헤더 제외 */
+    height: 100%;
     overflow: auto;
 }
