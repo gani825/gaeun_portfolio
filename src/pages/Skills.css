@@ -1,0 +1,91 @@
+/* Skills.css */
+
+/* 전체 스킬 컨테이너 */
+.skills-container {
+    max-width: 900px;
+    padding: 0.8rem;
+    height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    cursor: default;
+}
+
+/* 각 스킬 카테고리 영역 */
+.skills-group {
+    margin-bottom: 2rem;
+}
+
+.skills-group h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #000;
+    text-align: left;
+    font-weight: 500;
+    padding-left: 0.5rem;
+}
+
+/* 스킬 카드들을 grid로 배치 */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 최소 120px 카드로 자동 배치 */
+    gap: 1rem;
+}
+
+/* 카드가 3D 회전할 수 있도록 시점(perspective) 설정 */
+.skill-card {
+    perspective: 3000px; /* 시점 거리, 값이 작을수록 회전이 더 강해짐 */
+}
+
+/* 카드 내부 요소 (앞면/뒷면) */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    text-align: center;
+    transform-style: preserve-3d; /* 자식 요소에 3D 적용 */
+    transition: transform 1s;   /* 회전 애니메이션 */
+}
+
+/* 마우스를 올렸을 때 회전 (Y축 기준으로 뒤집힘) */
+.skill-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* 앞면과 뒷면 공통 스타일 */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 뒷면을 보이지 않게 함 */
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* 앞면 아이콘 스타일 */
+.card-front img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.4rem;
+}
+
+/* 앞면 텍스트 스타일 */
+.card-front p {
+    font-weight: 400;
+    color: #333;
+}
+
+/* 뒷면은 180도 회전되어 있어야 뒤집었을 때 보임 */
+.card-back {
+    transform: rotateY(180deg);
+    font-size: 0.875rem;
+    color: #333;
+    text-align: left;
+    font-weight: lighter;
+}

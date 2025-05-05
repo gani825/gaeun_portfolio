@@ -1,0 +1,130 @@
+.projects-container {
+    max-width: 900px;
+    padding: 0.8rem;
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.project-card {
+    width: 97%;
+    max-width: 600px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.project-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* 공통 카드 면 (앞면, 뒷면 모두 적용) */
+.project-front,
+.project-back {
+    position: absolute; /* 카드 안에서 겹쳐지도록 설정 */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+    transition: opacity 0.7s ease-in-out, transform 0.9s ease-in-out;
+    background-size: cover; /* 배경 이미지를 꽉 채우도록 */
+    background-position: center; /* 이미지 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 하단에 텍스트 배치 */
+    top: 0;
+    left: 0;
+}
+
+/* 카드 앞면 기본 설정 */
+.project-front {
+    opacity: 1; /* 기본 상태에서 보이도록 */
+    z-index: 2; /* 앞면이 위에 오도록 */
+    transform: translateY(0); /* 처음 위치 */
+}
+
+/* 앞면 이미지 위에 어두운 필터 덧씌우기 */
+.image-darken {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+/*.image-darken.HandTrip {*/
+/*    background: rgba(0, 0, 0, 0.53);*/
+/*}*/
+
+/*.image-darken.PlanFit {*/
+/*    background: rgba(0, 0, 0, 0.55);*/
+/*}*/
+
+/* 앞면 안의 텍스트 */
+.project-overlay {
+    position: relative;
+    z-index: 2  ; /* 어두운 필터 위에 텍스트가 보이도록 */
+    color: white;
+    text-align: left;
+}
+
+.project-overlay h3,
+.project-overlay p {
+    line-height: 1.5;
+}
+
+.project-overlay h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.project-overlay p {
+    margin-top: 10px;
+    font-size: 0.93em;
+    font-weight: 200;
+}
+
+/* 뒷면 초기 상태 */
+.project-back {
+    background-color: #f5f5f5;
+    color: white;
+    opacity: 0; /* 처음에는 보이지 않음 */
+    z-index: 1; /* 앞면보다 뒤에 있음 */
+    transform: translateY(10px); /* 살짝 아래에 위치 */
+}
+
+/* hover 시 앞면 사라지는 효과 */
+.project-card:hover .project-front {
+    opacity: 0;
+    transform: translateY(-100%); /* 위로 완전히 이동 */
+    z-index: 1; /* 뒷면보다 아래로 */
+}
+
+/* hover 시 뒷면 올라오는 효과 */
+.project-card:hover .project-back {
+    opacity: 1;
+    transform: translateY(0); /* 제자리로 이동 */
+    z-index: 2; /* 위로 올라옴 */
+    pointer-events: auto; /* 내부 클릭 가능하게 함 */
+}
+
+/* 뒷면 안의 링크 스타일 */
+.project-back a {
+    color: #333;
+    margin: 8px 0;
+    display: block;
+    text-align: center;
+    padding-top: 70px;
+    font-size: 1.1rem;
+}

@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  /* 전역 기본 설정 */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  html, body, #root {
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
   }
-  to {
-    transform: rotate(360deg);
+
+  .App {
+    text-align: center;
   }
-}
+
+  /* 공통 배경 애니메이션 */
+  body {
+    animation: gradientShift 15s ease infinite; /* 그라디언트 색상 전환 효과 */
+    overflow: hidden;
+  }
+
+  /* 라이트모드 스타일 */
+  body.light {
+    background: url('./assets/img/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+  }
+
+  /* 다크모드 스타일 */
+  body.dark {
+    background:
+            linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+            url('./assets/img/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: darken;
+    color: #f2f2f2;
+  }
+
+  /* 다크모드일 때 Dock의 배경 투명 처리 */
+  body.dark .dock {
+    background: rgba(60, 60, 60, 0.25);
+  }
+
+  /* 다크모드일 때 윈도우와 About 섹션 내부 색상 통일 */
+  body.dark .window,
+  body.dark .about-section,
+  body.dark .icon,
+  body.dark .about-academy,
+  body.dark .about-day,
+  body.dark .about-study p,
+  body.dark .about-study,
+  body.dark .about-Introduce p{
+    background: #282828;
+    color: #f2f2f2;
+  }
+
+  body.dark .category-title, body.dark .background-title, body.dark .background-text {
+    color: #f2f2f2;
+  }
+
+  /* 메인 소개 타이틀 */
+  .background-title {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    font-size: 34px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.4;
+    pointer-events: none;
+    z-index: 0;
+    text-align: left;
+  }
+
+  /* 메인 소개 본문 */
+  .background-text {
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.7;
+    pointer-events: none;
+    z-index: 0;
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  /* 전체화면 창이 젤 위로 뜨게 */
+  .window.fullscreen {
+    z-index: 99999 !important;
+  }
+
+  /* 배경 색상 전환 애니메이션 정의 */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }

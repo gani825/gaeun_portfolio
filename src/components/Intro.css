@@ -1,0 +1,73 @@
+/* 인트로 전체 화면 설정 */
+.intro {
+    position: fixed;
+    inset: 0; /* top, right, bottom, left 모두 0으로 고정 */
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 가장 위에 위치하도록 설정 */
+    animation: fadeOut 1s ease 2s forwards; /* 2초 뒤 서서히 사라지는 애니메이션 */
+}
+
+/* 로고 텍스트 설정 */
+.intro-logo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+    font-weight: normal;
+    color: white;
+    animation: zoomIn 1s ease forwards; /* 로고 확대 등장 효과 */
+    letter-spacing: 1px;
+}
+
+/* 로딩 점 세 개 정렬 */
+.intro-loader {
+    display: flex;
+    gap: 6px;
+    margin-top: 16px;
+}
+
+/* 점 스타일 */
+.intro-loader span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.8;
+    animation: bounce 1.2s infinite; /* bounce 애니메이션 반복 실행 */
+}
+
+/* 두 번째, 세 번째 점 애니메이션 지연 설정 */
+.intro-loader span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.intro-loader span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* bounce 애니메이션 */
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 로고가 줌인되는 효과 */
+@keyframes zoomIn {
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* 전체 인트로가 사라지는 효과 */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
