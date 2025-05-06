@@ -70,28 +70,28 @@
 }
 
 /* 공통 아이콘 스타일 */
-.icon {
+.about-icon {
     color: #555;
     font-size: 14px;
 }
 
 /* 학력 아이콘 전용 스타일 */
-.icon-edu {
+.about-icon-edu {
     font-size: 18px;
     transform: translateX(-1.5px); /* 수평 위치 살짝 조정 */
 }
 
-.contact-link {
+.about-contact-link {
     text-decoration: none;
     transition: color 0.2s;
     margin-top: 1%;
 }
 
-.contact-link:hover {
+.about-contact-link:hover {
     text-decoration: underline;
 }
 
-.link-icon {
+.about-link-icon {
     font-size: 0.65em;
     margin-left: 4px;
     vertical-align: middle;
@@ -130,12 +130,10 @@
 
 /* 전체화면 기준 */
 .about-section.fullscreen {
-    height: 100%;
-    overflow-y: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* 스크롤 위로부터 시작 */
     padding: 1rem;
 }
 
@@ -181,13 +179,13 @@
 }
 
 /* 공통 아이콘 스타일 */
-.about-section.fullscreen .icon {
+.about-section.fullscreen .about-icon {
     color: #555;
     font-size: 15px;
 }
 
 /* 학력 아이콘 전용 스타일 */
-.about-section.fullscreen .icon-edu {
+.about-section.fullscreen .about-icon-edu {
     font-size: 19px;
     transform: translateX(-1.5px); /* 수평 위치 살짝 조정 */
 }

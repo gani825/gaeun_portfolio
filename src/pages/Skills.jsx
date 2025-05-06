@@ -48,7 +48,7 @@ function Skills({isFullscreen}) {
             <div className="skills-container">
                 {skills.map((group) => (
                     <div key={group.category} className="skills-group">
-                        <h2 className="category-title">
+                        <h2 className="skills-category-title">
                             {group.category === 'Frontend' && '🕸️ '}
                             {group.category === 'Tools' && '⚙️ '}
                             {group.category === 'Design' && '🎨 '}
@@ -58,12 +58,12 @@ function Skills({isFullscreen}) {
                         <div className="skills-grid">
                             {group.items.map((skill) => (
                                 <div className="skill-card" key={skill.name}>
-                                    <div className="card-inner">
-                                        <div className="card-front">
+                                    <div className="skill-card-inner">
+                                        <div className="skill-card-front">
                                             <img src={skill.icon} alt={skill.name}/>
                                             <p>{skill.name}</p>
                                         </div>
-                                        <div className="card-back">
+                                        <div className="skill-card-back">
                                             <p>{skill.description}</p>
                                         </div>
                                     </div>

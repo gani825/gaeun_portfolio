@@ -145,7 +145,7 @@ function Window({ id, appId, onClose, onFocus, offsetX, offsetY, zIndex, onDrag 
                         <span className="button-icon">–</span>
                     </div>
                     <div className="window-button green" onClick={toggleFullscreen}>
-                        <span className="button-icon">⤢</span>
+                        <span className="button-icon">{isFullscreen ? '⤡' : '⤢'}</span>
                     </div>
                 </div>
                 <span className="window-appId">{appId}</span>

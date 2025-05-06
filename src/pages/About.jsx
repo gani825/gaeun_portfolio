@@ -22,28 +22,28 @@ function About({isFullscreen}) {
                         <div className="about-text">
                             <div className="about-name">김가은</div>
                             <div className="about-details">
-                                <div><FaBirthdayCake className="icon"/> 2001.05.03</div>
-                                <div><FaGraduationCap className="icon icon-edu"/> 대입 검정고시(고졸)</div>
+                                <div><FaBirthdayCake className="about-icon"/> 2001.05.03</div>
+                                <div><FaGraduationCap className="about-icon icon-edu"/> 대입 검정고시(고졸)</div>
                                 <div>
-                                    <FaPhoneAlt className="icon"/>
-                                    <a href="tel:01058305149" className="contact-link">
-                                        010-5830-5149 <FaExternalLinkAlt className="link-icon"/>
+                                    <FaPhoneAlt className="about-icon"/>
+                                    <a href="tel:01058305149" className="about-contact-link">
+                                        010-5830-5149 <FaExternalLinkAlt className="about-link-icon"/>
                                     </a>
                                 </div>
                                 <div>
-                                    <FaEnvelope className="icon"/>
-                                    <a href="mailto:kgee0503@gmail.com" className="contact-link">
-                                        kgee0503@gmail.com <FaExternalLinkAlt className="link-icon"/>
+                                    <FaEnvelope className="about-icon"/>
+                                    <a href="mailto:kgee0503@gmail.com" className="about-about-contact-link">
+                                        kgee0503@gmail.com <FaExternalLinkAlt className="about-link-icon"/>
                                     </a>
                                 </div>
                                 <div>
-                                    <FaGithub className="icon"/>
+                                    <FaGithub className="about-icon"/>
                                     <a href="https://github.com/gani825" target="_blank" rel="noopener noreferrer"
                                        className="contact-link">
-                                        github.com/gani825 <FaExternalLinkAlt className="link-icon"/>
+                                        github.com/gani825 <FaExternalLinkAlt className="about-link-icon"/>
                                     </a>
                                 </div>
-                                <div><FaMapMarkerAlt className="icon"/> 대구광역시 남구 대명동</div>
+                                <div><FaMapMarkerAlt className="about-icon"/> 대구광역시 남구 대명동</div>
                             </div>
                         </div>
                     </div>
@@ -81,8 +81,6 @@ function About({isFullscreen}) {
                 </div>
             </div>
         </div>
-
-
     );
 }
 
