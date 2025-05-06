@@ -4,8 +4,6 @@
     left: 20%;
     transform: translateX(-50%);
     width: 680px;
-    max-width: 100vw;
-    max-height: 100vh;
     overflow: hidden;
     background: white;
     border-radius: 1rem;
@@ -71,6 +69,8 @@
 
 .window-button.yellow {
     background-color: #ffbd2e;
+    opacity: 0.5; /* 비활성화 느낌 */
+    cursor: default;
 }
 
 .window-button.green {
@@ -102,4 +102,70 @@
 .window.fullscreen .window-content {
     height: 100%;
     overflow: auto;
+}
+
+/* 반응형 */
+@media screen and (max-width: 1024px) {
+    .window {
+        position: fixed !important;
+        top: 5% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 90% !important;
+        max-width: 680px !important;
+        height: auto !important;
+        padding: 0.8rem !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+    }
+
+    .window.fullscreen {
+        border-radius: 0 !important;
+        width: 100vw !important;
+        left: 0 !important;
+        top: 0 !important;
+        height: 100vh !important;
+    }
+
+    .window-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .window-appId {
+        font-size: 1rem !important;
+    }
+
+    .window-buttons {
+        gap: 0.5rem;
+    }
+
+    .window-button {
+        width: 14px !important;
+        height: 14px !important;
+        font-size: 10px !important;
+    }
+
+    .window-button.green {
+        pointer-events: none; /* 클릭 안 되게 */
+        opacity: 0.5; /* 비활성화 느낌 */
+        cursor: default;
+    }
+
+    .window-button.yellow {
+        opacity: 0.5; /* 비활성화 느낌 */
+        cursor: default;
+    }
+
+    .window-content {
+        padding: 0.5rem !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+    }
+
+    .window.fullscreen .window-content {
+        padding: 1rem !important;
+        max-height: calc(100vh - 70px) !important;
+    }
 }

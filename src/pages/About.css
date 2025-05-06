@@ -122,14 +122,19 @@
     line-height: 1.8;
     text-align: left;
     color: #444;
+    word-break: keep-all; /* 한글 줄바꿈 깨지지 않게 */
+    white-space: normal;
 }
 
 .about-Introduce p {
     margin-bottom: 20px;
+    word-break: keep-all; /* 한글 줄바꿈 깨지지 않게 */
+    white-space: normal;
 }
 
 /* 전체화면 기준 */
 .about-section.fullscreen {
+    max-width: 700px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -142,7 +147,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 1000px;
     width: 100%;
 }
 
@@ -189,3 +194,44 @@
     font-size: 19px;
     transform: translateX(-1.5px); /* 수평 위치 살짝 조정 */
 }
+
+/* 반응형 */
+@media screen and (max-width: 1024px) {
+
+    .about-info {
+        flex-direction: column; /* 세로 정렬 */
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .about-photo {
+        width: 130px;
+    }
+
+    .about-name {
+        text-align: center;
+        font-size: 1.2rem; /* 이름 폰트 크기 축소 */
+    }
+
+    .about-details {
+        grid-template-columns: 1fr 1fr; /* 2열 */
+        gap: 0.8rem;
+    }
+
+    .about-study p,
+    .about-Introduce p {
+        font-size: 0.92rem;
+        text-align: left;
+        word-break: keep-all; /* 한글 줄바꿈 깨지지 않게 */
+        white-space: normal;
+    }
+
+    .about-icon {
+        font-size: 14px;
+    }
+
+    .about-icon-edu {
+        font-size: 16px;
+    }
+}
+

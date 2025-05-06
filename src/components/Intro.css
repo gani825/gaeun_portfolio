@@ -14,11 +14,12 @@
 /* 로고 텍스트 설정 */
 .intro-logo {
     font-family: 'Roboto', sans-serif;
-    font-size: 48px;
+    font-size: 46px;
     font-weight: normal;
     color: white;
-    animation: zoomIn 1s ease forwards; /* 로고 확대 등장 효과 */
+    animation: zoomIn 1.5s ease forwards; /* 로고 확대 등장 효과 */
     letter-spacing: 1px;
+    margin-bottom: 16px;
 }
 
 /* 로딩 점 세 개 정렬 */
@@ -60,7 +61,7 @@
 @keyframes zoomIn {
     to {
         opacity: 1;
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
 }
 

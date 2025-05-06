@@ -21,11 +21,11 @@
     border: none;
     background: none;
     cursor: pointer;
-    transition: transform 0.2s ease; /* 호버 시 커짐 효과 */
+    transition: transform 0.4s ease; /* 호버 시 커짐 효과 */
 }
 
 .dock-button:hover {
-    transform: scale(1.5);
+    transform: scale(1.53);
 }
 
 /* 아이콘 이미지 */

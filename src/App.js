@@ -12,6 +12,9 @@ const apps = [
     {id: 'skills', name: 'Skills'},
 ];
 
+// 🔧 새로고침 여부 확인 (애니메이션 분기용)
+const isReload = performance.getEntriesByType('navigation')[0]?.type === 'reload';
+
 function App() {
     // 열려있는 앱 상태 (id와 위치 포함)
     const [openApps, setOpenApps] = useState(() => {
@@ -23,7 +26,6 @@ function App() {
         return []; // 새로고침 아닌 경우 초기화
     });
 
-
     // 다크/라이트 모드 상태
     const [theme, setTheme] = useState(() => {
         return (
@@ -34,20 +36,40 @@ function App() {
 
     // 인트로 상태: 새로고침 시 false, 그 외 true
     const [showIntro, setShowIntro] = useState(() => {
-        // const isReload = performance.navigation.type === 1; ← deprecated
         const isReload = performance.getEntriesByType('navigation')[0]?.type === 'reload';
         return !isReload;
     });
 
-// 새로고침일 때만 위치 상태 저장
+    const [fadeIn, setFadeIn] = useState(false);
+
+    // 인트로 종료 후 텍스트 페이드인
     useEffect(() => {
-        // const isReload = performance.navigation.type === 1; ← deprecated
+        if (!showIntro) {
+            const timer = setTimeout(() => {
+                setFadeIn(true);
+            }, 300); // 인트로 끝난 후 약간 지연 후 등장
+            return () => clearTimeout(timer);
+        }
+    }, [showIntro]);
+
+    // 🔧 animateText 함수 수정: 새로고침이면 바로 출력
+    const animateText = (text) => {
+        if (isReload) return text;
+
+        return text.split("").map((char, i) => (
+            <span key={i} style={{ animationDelay: `${i * 0.03}s` }}>
+                {char === " " ? "\u00A0" : char}
+            </span>
+        ));
+    };
+
+    // 새로고침일 때만 위치 상태 저장
+    useEffect(() => {
         const isReload = performance.getEntriesByType('navigation')[0]?.type === 'reload';
         if (isReload) {
             localStorage.setItem('openApps', JSON.stringify(openApps));
         }
     }, [openApps]);
-
 
     // 인트로 한번만 실행 (showIntro가 true일 때만 실행)
     useEffect(() => {
@@ -64,7 +86,6 @@ function App() {
         document.body.className = theme;
         localStorage.setItem('theme', theme);
     }, [theme]);
-
 
     // 테마 토글
     const toggleTheme = () => {
@@ -118,22 +139,26 @@ function App() {
     const fullscreenApp = openApps.find((app) => app.isFullscreen);
 
     // 인트로 애니메이션은 첫 방문에만 렌더링
-    if (showIntro) return <Intro/>;
+    if (showIntro) return <Intro />;
 
     return (
         <div className="App">
-            <MenuBar onToggleTheme={toggleTheme} theme={theme}/>
+            <MenuBar onToggleTheme={toggleTheme} theme={theme} />
 
-            <div className="background-title">
-                안녕하세요 :)<br/>
-                프론트엔드 개발자 김가은입니다
-            </div>
-            <div className="background-text">
-                저는 국비 지원 과정을 통해 HTML, CSS, JavaScript를 기초부터 배웠고,<br/>
-                React와 Figma를 활용한 팀 프로젝트로 개발의 흐름을 익혔습니다.<br/>
-                아직 경력은 없지만, 성장 가능성과 배우려는 자세로 준비된 신입입니다.<br/>
-                사용자에게 더 나은 웹 경험을 제공하는 프론트엔드 개발자를 꿈꿉니다.
-            </div>
+            {fadeIn && (
+                <div className="background">
+                    <div className="background-title fade-text">
+                        {animateText("안녕하세요 :)")}<br />
+                        {animateText("프론트엔드 개발자 김가은입니다")}
+                    </div>
+                    <div className="background-text fade-text">
+                        {animateText("저는 국비 지원 과정을 통해 HTML, CSS, JavaScript를 기초부터 배웠고,")}<br />
+                        {animateText("React와 Figma를 활용한 팀 프로젝트로 개발의 흐름을 익혔습니다.")}<br />
+                        {animateText("아직 경력은 없지만, 성장 가능성과 배우려는 자세로 준비된 신입입니다.")}<br />
+                        {animateText("사용자에게 더 나은 웹 경험을 제공하는 프론트엔드 개발자를 꿈꿉니다.")}
+                    </div>
+                </div>
+            )}
 
             <Dock apps={apps} onAppClick={handleAppClick} fullscreenAppId={fullscreenApp?.id} />
 

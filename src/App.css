@@ -100,6 +100,17 @@ body.dark .projects-section.fullscreen .project-links a:hover {
     text-decoration: underline;;
 }
 
+.main-intro-wrapper {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    z-index: 1;
+    pointer-events: none;
+}
+
 /* 메인 소개 타이틀 */
 .background-title {
     position: absolute;
@@ -129,6 +140,25 @@ body.dark .projects-section.fullscreen .project-links a:hover {
     margin-top: 20px;
 }
 
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-text span {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeDown 1.3s ease forwards;
+}
+
+
+
 /* 전체화면 창이 젤 위로 뜨게 */
 .window.fullscreen {
     z-index: 99999 !important;
@@ -145,4 +175,17 @@ body.dark .projects-section.fullscreen .project-links a:hover {
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* 반응형 */
+@media screen and (max-width: 1024px) {
+
+    .background-title {
+        font-size: 24px;
+    }
+
+    .background-text {
+        font-size: 18px;
+    }
+
 }
