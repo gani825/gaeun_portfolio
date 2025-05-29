@@ -13,8 +13,9 @@ const projectData = [
         tools: ['백엔드 : SpringBoot   프론트엔드 : WebStorm, React, Css\n' +
         '데이터베이스 : MYSQL, HIBERNATE   배포 : AWS 테스트서버 : JUNITS \n' +
         '협업도구 : Notion, GitHub, Figma'],
-        deploy: 'https://gani825.github.io/HandTrip/#/',
-        github: 'https://github.com/bong123123/Team_HandTrip_FN',
+        deploy: undefined,
+        deployAvailable: false, // 배포 불가
+        github: 'https://github.com/SeoKai/HandTrip_FN',
         ppt: 'https://drive.google.com/file/d/148_qEvYeeoVQRi-UOXkLH3Ix_xrMLc4B/view?usp=drive_link',
     },
     {
@@ -31,6 +32,7 @@ const projectData = [
         tools: ['디자인 & 와이어프레임 : Figma   프론트엔드: HTML, CSS, React \n' +
         '웹 기술 : AJAX   코드 에디터: WebStorm   데이터베이스: Firebase(Realtime Database, Authentication)'],
         deploy: 'https://gani825.github.io/PlanFit/#/',
+        deployAvailable: true,
         github: 'https://github.com/gani825/PlanFit',
         ppt: 'https://drive.google.com/file/d/1jzPK9NF-yhiLw59JbqfEzQk8hiyaEYGa/view?usp=drive_link',
     },
@@ -71,16 +73,25 @@ function Projects({ isFullscreen }) {
                                         <p><strong>🛠 작업 툴 :</strong> {project.tools?.join(', ')}</p>
                                     </div>
                                     <div className="project-links">
-                                        {project.deploy && <a href={project.deploy} target="_blank" rel="noreferrer">🔗 배포</a>}
+                                        {project.deploy && project.deployAvailable !== false ? (
+                                            <a href={project.deploy} target="_blank" rel="noreferrer">🔗 배포</a>
+                                        ) : (
+                                            <span>🚧 배포 준비 중</span>
+                                        )}
                                         {project.github && <a href={project.github} target="_blank" rel="noreferrer">💻 GitHub</a>}
                                         {project.ppt && <a href={project.ppt} target="_blank" rel="noreferrer">📄 발표자료</a>}
                                     </div>
+
                                 </>
                             )}
 
                             {!isFullscreen && (
                                 <div className="project-back">
-                                    {project.deploy && <a href={project.deploy} target="_blank" rel="noreferrer">🔗 배포</a>}
+                                    {(project.deploy && project.deployAvailable !== false) ? (
+                                        <a href={project.deploy} target="_blank" rel="noreferrer">🔗 배포</a>
+                                    ) : (
+                                        <a>🚧 배포 준비 중</a>
+                                    )}
                                     {project.github && <a href={project.github} target="_blank" rel="noreferrer">💻 GitHub</a>}
                                     {project.ppt && <a href={project.ppt} target="_blank" rel="noreferrer">📄 발표자료</a>}
                                 </div>

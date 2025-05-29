@@ -100,6 +100,12 @@ body.dark .projects-section.fullscreen .project-links a:hover {
     text-decoration: underline;;
 }
 
+body.dark .interview-card, body.dark .growth-story-card,
+body.dark .notion-record,body.dark .notion-record a,  body.dark .contact-card ,
+body.dark .icon-link, body.dark .icon-Download {
+    color: #f2f2f2;
+}
+
 .main-intro-wrapper {
     position: absolute;
     top: 30%;

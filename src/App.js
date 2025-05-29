@@ -3,6 +3,7 @@ import Dock from './components/Dock'; // 하단 앱 실행 아이콘 바
 import MenuBar from './components/MenuBar'; // 상단 메뉴바
 import Window from './components/Window'; // About, Projects, Skills 창
 import Intro from './components/Intro'; // 첫 화면 인트로 애니메이션
+import VentoGrid from './components/VentoGrid';
 import './App.css';
 
 // 실행 가능한 앱 정보 정의
@@ -144,7 +145,6 @@ function App() {
     return (
         <div className="App">
             <MenuBar onToggleTheme={toggleTheme} theme={theme} />
-
             {fadeIn && (
                 <div className="background">
                     <div className="background-title fade-text">
@@ -157,6 +157,8 @@ function App() {
                         {animateText("아직 경력은 없지만, 성장 가능성과 배우려는 자세로 준비된 신입입니다.")}<br />
                         {animateText("사용자에게 더 나은 웹 경험을 제공하는 프론트엔드 개발자를 꿈꿉니다.")}
                     </div>
+                    {/* 여기에 VentoGrid 배치 */}
+                    <VentoGrid />
                 </div>
             )}
 

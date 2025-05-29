@@ -1,0 +1,219 @@
+.vento-grid {
+    display: grid; /* CSS Grid 레이아웃 */
+    grid-template-columns: repeat(5, 1fr); /* 5컬럼 구조 */
+    grid-template-rows: 290px 210px 140px; /* 3행 */
+    grid-template-areas:
+        "area1 area1 area2 area2 area2"
+        "area3 area3 area3 area4 area4"
+        "area5 area5 area6 area6 area6";
+    gap: 10px; /* 간격 */
+    padding: 20px; /* 여백 */
+    justify-content: end; /* 그리드를 오른쪽으로 몰기 */
+    width: 50vw; /* 화면 너비의 절반만 차지 (조정 가능) */
+    position: absolute; /* 위치 지정 */
+    right: 3%;
+    top: 47%;
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+}
+
+.vento-card {
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); /* 반투명 배경 (glassmorphism) */
+    backdrop-filter: blur(4px); /* 배경 흐림 효과 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #333;
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+    /* 각 카드마다 개별적인 디자인 요소를 적용하려면 .area1, .area2 등에 추가 스타일 지정 가능 */
+}
+
+/* 첫번째 이미지 */
+.profile-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 1s ease-in-out; /* 전환 시간 1초 */
+}
+
+.profile-image.visible {
+    opacity: 1;
+    z-index: 2;
+}
+
+.profile-image.hidden {
+    opacity: 0;
+    z-index: 1;
+}
+
+/* 두번째 인터뷰 */
+.interview-card {
+    width: 100%;
+    padding: 12px;
+    color: #333;
+    text-align: left;
+}
+.interview-card h4 {
+    font-size: 1.02rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+}
+.interview-card p {
+    font-size: 0.92rem;
+    margin: 0 0 10px;
+    line-height: 1.6;
+}
+
+/* 3번째 카드 자기소개 */
+
+.growth-story-card {
+    padding: 12px;
+    color: #333;
+    text-align: left;
+}
+
+.growth-story-card h4{
+    font-size: 1.2rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+}
+
+.growth-story-card p {
+    font-size: 0.92rem;
+    margin: 0 0 10px;
+    line-height: 1.7;
+}
+
+/* 4번째 노션 공부 */
+.notion-record {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.notion-img {
+    height: 190px;
+}
+
+.notion-record p {
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin: 0 0 10px;
+    line-height: 1.6;
+}
+.notion-link a {
+    font-weight: 500;
+    font-size: 0.93rem;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.notion-link a:hover {
+    text-decoration: underline;
+}
+
+/* 4번째 정보 */
+.contact-card {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 12px;
+    color: #333;
+    text-align: left;
+}
+
+.contact-card h4 {
+    font-size: 1.2rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+}
+
+.contact-card ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2열 */
+    font-size: 0.98rem;
+    margin: 0 0 10px;
+;
+}
+
+.contact-card ul li {
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.icon-Download {
+    color: #333;
+    margin-left: 5px;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.icon-link {
+    color: #333;
+    margin-left: 5px;
+    font-size: 0.82rem;
+    vertical-align: middle;
+}
+
+.tooltip {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0.9;
+    z-index: 10;
+}
+
+/* 6번째 마지막 메시지 */
+
+.final-message {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 12px;
+    color: #333;
+    text-align: left;
+}
+
+.final-message h4 {
+    font-size: 1.2rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+}
+
+.final-message p {
+    font-size: 0.98rem;
+    margin: 0 0 10px;
+    line-height: 1.6;
+}
+
+/* 각 카드 영역 지정 */
+.area1 { grid-area: area1; }
+.area2 { grid-area: area2; }
+.area3 { grid-area: area3; }
+.area4 { grid-area: area4; }
+.area5 { grid-area: area5; }
+.area6 { grid-area: area6; }
