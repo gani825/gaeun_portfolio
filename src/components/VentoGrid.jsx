@@ -1,50 +1,85 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './VentoGrid.css';
 
+// 이미지와 아이콘 임포트
 import gaeunImg1 from '../assets/img/gaeun1.png';
 import gaeunImg2 from '../assets/img/gaeun2.png';
-import notionImg from '../assets/img/Studying.jpg';
-
-import {FaExternalLinkAlt} from 'react-icons/fa'; // react-icons 설치
-import {MdDownload} from 'react-icons/md';
+import CodingImg from '../assets/img/Coding.jpeg';
+import { FaExternalLinkAlt } from 'react-icons/fa';
+import { MdDownload } from 'react-icons/md';
 
 function VentoGrid() {
-    const [showFirst, setShowFirst] = useState(true); // 첫 번째 이미지 표시 여부
-    const [hoveredField, setHoveredField] = useState(null);
-    const [copiedField, setCopiedField] = useState(null);
+    // 상태 관리
+    const [showFirst, setShowFirst] = useState(true); // 이미지 전환 상태
+    const [hoveredField, setHoveredField] = useState(null); // hover 필드
+    const [copiedField, setCopiedField] = useState(null); // 복사 완료 필드
 
+    // 복사 핸들러: 텍스트 복사 및 2초 후 상태 초기화
     const handleCopy = (text, field) => {
-        navigator.clipboard.writeText(text);
-        setCopiedField(field);
-        setTimeout(() => setCopiedField(null), 2000); // 2초 후 복사 상태 해제
+        if (navigator.clipboard && window.isSecureContext) {
+            // HTTPS나 로컬 환경 (clipboard API 사용)
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    setCopiedField(field);
+                    setTimeout(() => setCopiedField(null), 1000);
+                })
+                .catch(err => {
+                    fallbackCopy(text, field);
+                });
+        } else {
+            // HTTP 등 보안 환경이 아닐 때 fallback
+            fallbackCopy(text, field);
+        }
     };
 
+    // fallback 복사 핸들러: HTTPS 환경이 아닐 경우 임시 textarea를 생성해 텍스트 복사 수행
+    const fallbackCopy = (text, field) => {
+        // 복사 핸들러: HTTPS 환경이 아닌 경우 임시 textarea를 생성해 텍스트 복사 수행
+        const textarea = document.createElement('textarea'); // textarea 생성
+        textarea.value = text; // 복사할 텍스트 삽입
+        textarea.style.position = 'fixed'; // 화면에 안보이도록 위치 고정
+        textarea.style.top = 0;
+        textarea.style.left = 0;
+        document.body.appendChild(textarea); // DOM에 추가
+        textarea.focus(); // 포커스
+        textarea.select(); // 텍스트 선택
+
+        try {
+            const successful = document.execCommand('copy'); // 복사 시도
+            if (successful) {
+                setCopiedField(field); // 복사 성공 표시
+                setTimeout(() => setCopiedField(null), 1000); // 1초 후 초기화
+            } else {
+                alert('복사가 지원되지 않습니다. 직접 복사해 주세요.'); // 실패 메시지
+            }
+        } catch (err) {
+            alert('복사 중 오류가 발생했습니다. 직접 복사해 주세요.'); // 예외 처리 메시지
+        }
+        document.body.removeChild(textarea); // DOM에서 textarea 제거
+    };
+
+
+    // 이미지 전환 타이머 설정 (2초마다 전환)
     useEffect(() => {
         const interval = setInterval(() => {
-            setShowFirst(prev => !prev); // 이미지 토글
-        }, 2000); // 2초마다 전환
-        return () => clearInterval(interval);
+            setShowFirst(prev => !prev);
+        }, 2000);
+        return () => clearInterval(interval); // 컴포넌트 언마운트 시 해제
     }, []);
 
+    // Grid에 렌더링할 카드 요소들
     const gridItems = [
+        // 프로필 이미지 전환 카드
         {
             content: (
                 <div className="profile-container">
-                    {/* 두 이미지를 동시에 렌더링하고 opacity로 전환 */}
-                    <img
-                        src={gaeunImg1}
-                        alt="Profile1"
-                        className={`profile-image ${showFirst ? 'visible' : 'hidden'}`}
-                    />
-                    <img
-                        src={gaeunImg2}
-                        alt="Profile2"
-                        className={`profile-image ${!showFirst ? 'visible' : 'hidden'}`}
-                    />
+                    <img src={gaeunImg1} alt="Profile1" className={`profile-image ${showFirst ? 'visible' : 'hidden'}`} />
+                    <img src={gaeunImg2} alt="Profile2" className={`profile-image ${!showFirst ? 'visible' : 'hidden'}`} />
                 </div>
             ),
             className: 'area1'
         },
+        // Q&A 카드 (프론트엔드 선택 이유 및 개발 철학)
         {
             content: (
                 <div className="interview-card">
@@ -66,6 +101,7 @@ function VentoGrid() {
             ),
             className: 'area2'
         },
+        // 자기소개 카드
         {
             content: (
                 <div className="growth-story-card">
@@ -82,24 +118,16 @@ function VentoGrid() {
             ),
             className: 'area3'
         },
+        // 미정 카드 (추후 컨텐츠 추가 예정)
         {
             content: (
-                <div className="notion-record">
-                    <img src={notionImg} alt="공부 기록 이미지" className="notion-img"/>
-                    <div className="notion-link">
-                        <p>📚 학습했던 내용을 복습하고 정리한 노션 페이지입니다.<br/>
-                            🖋️ 이해가 어려운 부분까지도 꼼꼼히 정리하고자 노력하며, <br/>
-                            기록했습니다.
-                        </p>
-                        <a href="https://www.notion.so/201f444f60178036b039ec798f9a7b77" target="_blank"
-                           rel="noopener noreferrer">
-                            👉 수업 기록 보러가기<FaExternalLinkAlt/>
-                        </a>
-                    </div>
+                <div className="studying-code">
+                    <img src={CodingImg} alt="Studying" className="notion-image" />
                 </div>
             ),
             className: 'area4'
         },
+        // 연락처 및 링크 카드
         {
             content: (
                 <div className="contact-card">
@@ -117,7 +145,6 @@ function VentoGrid() {
                             GitHub <FaExternalLinkAlt className="icon-link"/>
                         </a>
                         </li>
-
                         <li>
                             ✉️ <span
                             onClick={() => handleCopy('kgee@gmail.com', 'email')}
@@ -140,13 +167,12 @@ function VentoGrid() {
                             {copiedField === 'phone' && <span className="tooltip">복사 완료되었습니다.</span>}
                              </span>
                         </li>
-
                     </ul>
                 </div>
             ),
             className: 'area5'
         },
-
+        // 마지막 마무리 인사 카드
         {
             content: (
                 <div className="final-message">
@@ -157,10 +183,12 @@ function VentoGrid() {
                         이제 막 첫걸음을 뗀 만큼, <strong>배움의 자세로 도전하며 성장해</strong> 나가겠습니다.
                     </p>
                 </div>
-            ), className: 'area6'
+            ),
+            className: 'area6'
         }
     ];
 
+    // Grid 렌더링
     return (
         <div className="vento-grid">
             {gridItems.map((item, index) => (

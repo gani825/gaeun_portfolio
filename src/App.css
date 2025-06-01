@@ -102,7 +102,7 @@ body.dark .projects-section.fullscreen .project-links a:hover {
 
 body.dark .interview-card, body.dark .growth-story-card,
 body.dark .notion-record,body.dark .notion-record a,  body.dark .contact-card ,
-body.dark .icon-link, body.dark .icon-Download {
+body.dark .icon-link, body.dark .icon-Download, body.dark .final-message {
     color: #f2f2f2;
 }
 

@@ -96,40 +96,15 @@
     line-height: 1.7;
 }
 
-/* 4번째 노션 공부 */
-.notion-record {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
+/* 4번째 이미지 */
+.studying-code {
+    width: 100%;
+    height: 430px;
+    display: block;
+    object-fit: cover;
 }
 
-.notion-img {
-    height: 190px;
-}
-
-.notion-record p {
-    text-align: left;
-    font-weight: 400;
-    font-size: 0.9rem;
-    margin: 0 0 10px;
-    line-height: 1.6;
-}
-.notion-link a {
-    font-weight: 500;
-    font-size: 0.93rem;
-    color: #333;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.notion-link a:hover {
-    text-decoration: underline;
-}
-
-/* 4번째 정보 */
+/* 5번째 정보 */
 .contact-card {
     position: absolute;
     top: 0;

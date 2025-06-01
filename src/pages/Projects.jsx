@@ -3,7 +3,7 @@ import './Projects.css';
 
 const projectData = [
     {
-        img: require('../assets/img/HandTrip.jpg'),
+        img: require('../assets/img/HandTrip.png'),
         darkness: 'HandTrip',
         title: 'HandTrip',
         type: '협업',
